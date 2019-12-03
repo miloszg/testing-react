@@ -10,7 +10,6 @@ class SharedButton extends Component{
     }
 
 
-
     render(){
         const {buttonText} = this.props;
         return(
