@@ -18,9 +18,16 @@ const tempArr=[{
 
 }]
 
+const initialState= {
+  hideBtn: false
+}
+
 class App extends Component {
   constructor(props){
     super(props);
+    this.state ={
+      ...initialState
+    }
     this.fetch = this.fetch.bind(this);
   }
 
@@ -29,7 +36,15 @@ class App extends Component {
     this.props.fetchPosts();
   }
 
-
+  exampleMethod_updatedState(){
+    const {hideBtn} = this.state;
+    this.setState({
+      hideBtn:!hideBtn
+    })
+  }
+  exampleMethod_returnsValue(number){
+    return number + 1;
+  }
 
   render(){
     const{posts} = this.props;
@@ -43,7 +58,9 @@ class App extends Component {
             <Header/>
             <section className="main">
               <Headline header="Posts" desc="Click the button to render posts!" tempArr={tempArr}/>
-              <SharedButton {...configButton}/>
+              {posts.length === 0 &&
+                <SharedButton {...configButton}/>
+              }
               {posts.length > 0 &&
                 <div>
                   {posts.map((post,index)=>{
